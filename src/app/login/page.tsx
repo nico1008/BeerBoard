@@ -24,7 +24,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
           <button className="button-secondary" type="submit">Log in</button>
         </form>
         <p><Link href="/forgot-password">Forgot your password?</Link></p>
-        <p>New to BearBoard? <Link href={`/signup?next=${encodeURIComponent(next)}`}>Create an account</Link>.</p>
+        <p>New to BeerBoard? <Link href={`/signup?next=${encodeURIComponent(next)}`}>Create an account</Link>.</p>
       </section>
     </div>
   );

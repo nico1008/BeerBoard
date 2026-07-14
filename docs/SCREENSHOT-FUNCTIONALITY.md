@@ -1,10 +1,10 @@
 # Screenshot Functionality Audit
 
-This is the implementation checklist for the four supplied screenshots. The screenshots establish the minimum capability, not the target visual design. BearBoard uses a fictional demonstration dataset and must disclose that status wherever rankings are presented as a group.
+This is the implementation checklist for the four supplied screenshots. The screenshots establish the minimum capability, not the target visual design. BeerBoard uses a fictional demonstration dataset and must disclose that status wherever rankings are presented as a group.
 
 ## Assumptions
 
-- “BearBoard Index” is a deterministic 0–100 score derived from one canonical assessment formula.
+- “BeerBoard Index” is a deterministic 0–100 score derived from one canonical assessment formula.
 - The seeded release contains exactly 50 beers. All counts and aggregates derive from those database rows.
 - Search applies to beer, brewery, country, and style names.
 - “Add to Ledger” means a signed-in user-owned saved-beer record, not a decorative bookmark.
@@ -15,7 +15,7 @@ This is the implementation checklist for the four supplied screenshots. The scre
 
 | Screenshot / surface | Visible element | Intended behavior | Route / component | Supabase data | Responsive behavior | Verification |
 | --- | --- | --- | --- | --- | --- | --- |
-| All / header | BearBoard wordmark | Navigate to global ranking | `/`, `SiteHeader` | None | Remains visible; compact mobile wordmark | Keyboard and route test |
+| All / header | BeerBoard wordmark | Navigate to global ranking | `/`, `SiteHeader` | None | Remains visible; compact mobile wordmark | Keyboard and route test |
 | All / header | Beers | Open ranking and show active state | `/beers`, `PrimaryNav` | `beers` | Moves into mobile menu | Route and focus test |
 | All / header | Countries | Open country catalog and show active state | `/countries`, `PrimaryNav` | `countries`, `beers` | Moves into mobile menu | Route test |
 | All / header | Compare | Open comparison and show active state | `/compare`, `PrimaryNav` | `beers`, assessments | Moves into mobile menu | Route test |

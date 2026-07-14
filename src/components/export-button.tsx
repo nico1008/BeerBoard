@@ -15,7 +15,7 @@ export function ExportButton({ href, label = "Export CSV" }: { href: string; lab
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = url;
-      anchor.download = filenameFromHeader(response.headers.get("content-disposition")) ?? "bearboard-export.csv";
+      anchor.download = filenameFromHeader(response.headers.get("content-disposition")) ?? "beerboard-export.csv";
       document.body.append(anchor);
       anchor.click();
       anchor.remove();

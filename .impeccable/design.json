@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-07-14T21:45:00Z",
-  "title": "Design System: BearBoard",
+  "title": "Design System: BeerBoard",
   "extensions": {
     "colorMeta": {
       "background": { "role": "neutral", "displayName": "True White", "canonical": "oklch(1 0 0)", "tonalRamp": ["oklch(0.15 0 0)", "oklch(0.28 0 0)", "oklch(0.42 0 0)", "oklch(0.56 0 0)", "oklch(0.68 0 0)", "oklch(0.8 0 0)", "oklch(0.9 0 0)", "oklch(1 0 0)"] },
@@ -62,13 +62,13 @@
       "name": "Score Panel",
       "kind": "custom",
       "description": "Committed-color surface for index, rank, and release context.",
-      "html": "<section class=\"ds-score\"><span>BearBoard Index</span><strong>98.4</strong><span>Ranked #1</span></section>",
+      "html": "<section class=\"ds-score\"><span>BeerBoard Index</span><strong>98.4</strong><span>Ranked #1</span></section>",
       "css": ".ds-score { display: grid; min-height: 240px; align-content: space-between; border-radius: 14px; background: var(--accent); color: var(--bg); padding: 24px; } .ds-score strong { font-family: 'Geist Mono', monospace; font-size: 72px; line-height: 1; }"
     }
   ],
   "narrative": {
     "northStar": "The Global Tasting Ledger",
-    "overview": "BearBoard feels like a trusted field guide that has learned how to work on a screen. True white keeps dense catalog data legible. Measured terracotta supplies the human warmth of beer culture, while deep teal gives scores and high-confidence actions a sober data voice.",
+    "overview": "BeerBoard feels like a trusted field guide that has learned how to work on a screen. True white keeps dense catalog data legible. Measured terracotta supplies the human warmth of beer culture, while deep teal gives scores and high-confidence actions a sober data voice.",
     "keyCharacteristics": ["True-white reading surface with a restrained terracotta accent.", "Geist for interface clarity; Geist Mono only for metrics, labels, IDs, and dates.", "Dense information organized into tables, definition lists, and clear route hierarchy.", "Rounded corners remain compact and functional, never soft or toy-like.", "Motion communicates state in 150–250ms and disappears under reduced motion."],
     "rules": [
       { "name": "The One Voice Rule", "body": "Terracotta is used for action and evidence emphasis only. If more than one tenth of a product screen is terracotta, the interface has become decoration.", "section": "colors" },

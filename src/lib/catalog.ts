@@ -34,7 +34,7 @@ export async function getLatestRelease() {
   return data;
 }
 
-const sortColumns: Record<RankingFilters["sort"], keyof BeerCatalogRow> = {
+const sortColumns: Record<RankingFilters["sort"], string> = {
   rank: "global_rank",
   score: "index_score",
   name: "name",
@@ -65,7 +65,7 @@ export async function listBeers(filters: RankingFilters, allRows = false) {
   }
   const { data, error, count } = await query;
   assertNoError(error, "The beer ranking could not be loaded.");
-  return { beers: data ?? [], count: count ?? 0 };
+  return { beers: (data ?? []) as BeerCatalogRow[], count: count ?? 0 };
 }
 
 export async function listBeerOptions() {
@@ -74,7 +74,7 @@ export async function listBeerOptions() {
     .select("id,name,slug,brewery_name,country_name,style_name")
     .order("name");
   assertNoError(error, "Beer choices could not be loaded.");
-  return data ?? [];
+  return (data ?? []) as Pick<BeerCatalogRow, "id" | "name" | "slug" | "brewery_name" | "country_name" | "style_name">[];
 }
 
 export async function getBeerBySlug(slug: string) {
@@ -84,7 +84,7 @@ export async function getBeerBySlug(slug: string) {
     .eq("slug", slug)
     .maybeSingle();
   assertNoError(error, "The beer could not be loaded.");
-  return data;
+  return data as BeerCatalogRow | null;
 }
 
 export async function getBeerDescriptors(beerId: number) {
@@ -123,7 +123,7 @@ export async function getCountry(slug: string) {
     .eq("slug", slug)
     .maybeSingle();
   assertNoError(error, "The country could not be loaded.");
-  return data;
+  return data as CountrySummaryRow | null;
 }
 
 export async function listCountryBeers(slug: string) {
@@ -133,7 +133,7 @@ export async function listCountryBeers(slug: string) {
     .eq("country_slug", slug)
     .order("index_score", { ascending: false });
   assertNoError(error, "The country ranking could not be loaded.");
-  return data ?? [];
+  return (data ?? []) as BeerCatalogRow[];
 }
 
 export async function listStyles() {
@@ -153,7 +153,7 @@ export async function getStyle(slug: string) {
     .eq("slug", slug)
     .maybeSingle();
   assertNoError(error, "The style could not be loaded.");
-  return data;
+  return data as StyleSummaryRow | null;
 }
 
 export async function listStyleBeers(slug: string) {
@@ -163,7 +163,7 @@ export async function listStyleBeers(slug: string) {
     .eq("style_slug", slug)
     .order("index_score", { ascending: false });
   assertNoError(error, "The style examples could not be loaded.");
-  return data ?? [];
+  return (data ?? []) as BeerCatalogRow[];
 }
 
 export async function getCatalogStats() {
@@ -177,7 +177,9 @@ export async function getCatalogStats() {
   assertNoError(beerError, "Beer counts could not be loaded.");
   assertNoError(scoreError, "Score aggregates could not be loaded.");
   assertNoError(breweryError, "Brewery counts could not be loaded.");
-  const scoreValues = (scores ?? []).map((row) => row.index_score);
+  const scoreValues = (scores ?? [])
+    .map((row) => row.index_score)
+    .filter((score): score is number => score !== null);
   const mean = scoreValues.length
     ? scoreValues.reduce((sum, value) => sum + value, 0) / scoreValues.length
     : 0;
@@ -197,5 +199,6 @@ export async function getBeersByIds(ids: number[]) {
     .in("id", ids);
   assertNoError(error, "Saved beers could not be loaded.");
   const order = new Map(ids.map((id, index) => [id, index]));
-  return (data ?? []).toSorted((left, right) => (order.get(left.id) ?? 0) - (order.get(right.id) ?? 0));
+  const beers = (data ?? []) as BeerCatalogRow[];
+  return beers.toSorted((left, right) => (order.get(left.id) ?? 0) - (order.get(right.id) ?? 0));
 }

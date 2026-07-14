@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
   return new NextResponse(rowsToCsv(rows), {
     headers: {
       "content-type": "text/csv; charset=utf-8",
-      "content-disposition": `attachment; filename="bearboard-${left.slug}-vs-${right.slug}.csv"`,
+      "content-disposition": `attachment; filename="beerboard-${left.slug}-vs-${right.slug}.csv"`,
       "cache-control": "private, no-store",
     },
   });

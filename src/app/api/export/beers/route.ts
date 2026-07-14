@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
   return new NextResponse(csv, {
     headers: {
       "content-type": "text/csv; charset=utf-8",
-      "content-disposition": 'attachment; filename="bearboard-ranking.csv"',
+      "content-disposition": 'attachment; filename="beerboard-ranking.csv"',
       "cache-control": "private, no-store",
     },
   });

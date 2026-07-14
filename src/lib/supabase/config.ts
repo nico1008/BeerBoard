@@ -4,7 +4,7 @@ export function getSupabaseConfig() {
 
   if (!url || !publishableKey) {
     throw new Error(
-      "BearBoard is not connected to Supabase. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.",
+      "BeerBoard is not connected to Supabase. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.",
     );
   }
 

@@ -20,7 +20,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
 
   return (
     <div className="container page">
-      <header className="page-header"><div><h1>Settings</h1><p>Manage how your name and theme appear across BearBoard.</p></div></header>
+      <header className="page-header"><div><h1>Settings</h1><p>Manage how your name and theme appear across BeerBoard.</p></div></header>
       <section className="section panel" style={{ maxWidth: "42rem" }}>
         <h2>Profile</h2>
         <AuthMessage error={first(params.error)} success={first(params.success)} />

@@ -1,5 +1,5 @@
 ---
-name: BearBoard
+name: BeerBoard
 description: Clear global beer intelligence for curious drinkers.
 colors:
   background: "oklch(1 0 0)"
@@ -70,13 +70,13 @@ components:
     padding: "1.35rem"
 ---
 
-# Design System: BearBoard
+# Design System: BeerBoard
 
 ## 1. Overview
 
 **Creative North Star: "The Global Tasting Ledger"**
 
-BearBoard feels like a trusted field guide that has learned how to work on a screen. True white keeps dense catalog data legible. Measured terracotta supplies the human warmth of beer culture, while deep teal gives scores and high-confidence actions a sober data voice. The interface is informed, welcoming, and worldly without borrowing brewery nostalgia.
+BeerBoard feels like a trusted field guide that has learned how to work on a screen. True white keeps dense catalog data legible. Measured terracotta supplies the human warmth of beer culture, while deep teal gives scores and high-confidence actions a sober data voice. The interface is informed, welcoming, and worldly without borrowing brewery nostalgia.
 
 The system is flat by default, structured by rules, tonal panels, and spacing. It rejects faux-scientific labels, distressed heritage effects, repeated floating dashboard cards, gradients, and theatrical motion. Product familiarity wins over visual novelty.
 
@@ -132,7 +132,7 @@ The palette uses true white as architecture, terracotta as the human brand voice
 
 ## 4. Elevation
 
-BearBoard is flat by default. Borders and tonal surfaces establish hierarchy. The only structural shadow is a compact 6px–8px menu shadow used when a popover must sit above the page; cards and panels do not combine soft shadows with decorative borders.
+BeerBoard is flat by default. Borders and tonal surfaces establish hierarchy. The only structural shadow is a compact 6px–8px menu shadow used when a popover must sit above the page; cards and panels do not combine soft shadows with decorative borders.
 
 ### Shadow Vocabulary
 
@@ -176,7 +176,7 @@ Top navigation uses familiar text links and a two-pixel inset active rule. Mobil
 
 ### Score Panel
 
-The score panel is the one committed-color surface. It combines the exact BearBoard Index, rank, and release context. It never claims verified authority for demonstration data.
+The score panel is the one committed-color surface. It combines the exact BeerBoard Index, rank, and release context. It never claims verified authority for demonstration data.
 
 ## 6. Do's and Don'ts
 

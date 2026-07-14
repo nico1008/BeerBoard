@@ -10,7 +10,7 @@ values (
   'Global Demonstration Catalog — July 2026',
   '2026-07-14T00:00:00Z',
   true,
-  'This catalog is fictional demonstration data created to show BearBoard product behavior. It is not a verified ranking of real beers or breweries.'
+  'This catalog is fictional demonstration data created to show BeerBoard product behavior. It is not a verified ranking of real beers or breweries.'
 );
 
 insert into public.countries (name, slug, iso_code, region, summary) values
@@ -127,7 +127,7 @@ select
   s.id,
   sb.name,
   sb.slug,
-  'A fictional demonstration entry designed to illustrate the ' || lower(s.name) || ' profile within BearBoard.',
+  'A fictional demonstration entry designed to illustrate the ' || lower(s.name) || ' profile within BeerBoard.',
   sb.abv,
   case when sb.seed_rank in (17, 31, 44) then null else sb.ibu end,
   case when sb.seed_rank % 9 = 0 then null else round(92 + sb.abv * 14)::integer end,

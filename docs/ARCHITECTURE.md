@@ -1,8 +1,8 @@
-# BearBoard Architecture
+# BeerBoard Architecture
 
 ## System overview
 
-BearBoard is a Next.js 16 App Router application hosted on Vercel. Supabase is the production database and authentication provider. PostgreSQL is the source of truth for catalog rows, assessment inputs, generated scores, rankings, release freshness, and user-owned Ledger entries.
+BeerBoard is a Next.js 16 App Router application hosted on Vercel. Supabase is the production database and authentication provider. PostgreSQL is the source of truth for catalog rows, assessment inputs, generated scores, rankings, release freshness, and user-owned Ledger entries.
 
 Public catalog routes use Server Components and a browser-safe publishable key through `src/lib/supabase/public.ts`. They do not read cookies or authenticated state. The account control is a focused Client Component boundary. Protected routes use `src/lib/supabase/server.ts` and validate the current user with `auth.getUser()` before reading or mutating owned data.
 
@@ -104,7 +104,7 @@ No service-role key is required by the current application. User mutations run w
 Deployment order:
 
 1. Review the migration for destructive statements.
-2. Apply the migration to the confirmed BearBoard Supabase project.
+2. Apply the migration to the confirmed BeerBoard Supabase project.
 3. Seed and verify exactly 50 beers.
 4. Generate database types from that project.
 5. Run advisors and ownership tests.

@@ -24,7 +24,7 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <Link className="wordmark" href="/beers" aria-label="BearBoard beer ranking">BearBoard</Link>
+        <Link className="wordmark" href="/beers" aria-label="BeerBoard beer ranking">BeerBoard</Link>
         <nav className="primary-nav" aria-label="Primary navigation">
           {navigation.map((item) => (
             <Link className="nav-link" data-active={isActive(item.href)} href={item.href} key={item.href}>
@@ -33,7 +33,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="header-actions">
-          <Link className="icon-link" href="/search" aria-label="Search BearBoard"><Search size={18} /></Link>
+          <Link className="icon-link" href="/search" aria-label="Search BeerBoard"><Search size={18} /></Link>
           <Link className="icon-link" href="/settings" aria-label="Open settings"><Settings size={18} /></Link>
           <AccountMenu />
           <button

@@ -10,7 +10,7 @@ Beer lovers around the world. They range from curious newcomers to experienced e
 
 ## Product Purpose
 
-BearBoard is a global beer-intelligence catalog. It helps people find highly rated demonstration beers, understand how styles and regions differ, compare technical and sensory profiles, and keep a personal Ledger. Success means a visitor can move from broad discovery to a confident comparison or saved beer in a few clear steps.
+BeerBoard is a global beer-intelligence catalog. It helps people find highly rated demonstration beers, understand how styles and regions differ, compare technical and sensory profiles, and keep a personal Ledger. Success means a visitor can move from broad discovery to a confident comparison or saved beer in a few clear steps.
 
 ## Brand Personality
 

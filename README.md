@@ -1,6 +1,6 @@
-# BearBoard
+# BeerBoard
 
-BearBoard is a global demonstration beer-intelligence catalog for beer lovers around the world. It combines an exactly 50-entry ranking, beer details, comparisons, country and style discovery, Supabase authentication, and a private user Ledger.
+BeerBoard is a global demonstration beer-intelligence catalog for beer lovers around the world. It combines an exactly 50-entry ranking, beer details, comparisons, country and style discovery, Supabase authentication, and a private user Ledger.
 
 The initial catalog is fictional demonstration data. The interface discloses that status and does not present the entries as verified claims about real breweries or beers.
 

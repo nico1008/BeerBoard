@@ -5,10 +5,10 @@ type Theme = "light" | "dark" | "system";
 export function ThemeControl({ initialTheme = "system", name = "theme" }: { initialTheme?: Theme; name?: string }) {
   function updateTheme(nextTheme: Theme) {
     if (nextTheme === "system") {
-      localStorage.removeItem("bearboard-theme");
+      localStorage.removeItem("beerboard-theme");
       document.documentElement.removeAttribute("data-theme");
     } else {
-      localStorage.setItem("bearboard-theme", nextTheme);
+      localStorage.setItem("beerboard-theme", nextTheme);
       document.documentElement.dataset.theme = nextTheme;
     }
   }

@@ -30,7 +30,7 @@ export default async function CountryDetailPage({ params }: { params: Promise<{ 
         <div className="metric"><dt>Styles represented</dt><dd>{distribution.length}</dd></div>
       </dl>
       <section className="section" aria-labelledby="country-ranking">
-        <div className="section-heading"><div><h2 id="country-ranking">Ranked beers</h2><p>Ordered by BearBoard Index within the global demonstration release.</p></div></div>
+        <div className="section-heading"><div><h2 id="country-ranking">Ranked beers</h2><p>Ordered by BeerBoard Index within the global demonstration release.</p></div></div>
         {beers.length ? <BeerRankingTable beers={beers} /> : <div className="empty-state"><h2>No indexed beers</h2><p>This country has no beers in the current demonstration release.</p></div>}
       </section>
       <section className="section panel" aria-labelledby="style-distribution">

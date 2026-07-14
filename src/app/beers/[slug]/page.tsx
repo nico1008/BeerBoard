@@ -44,8 +44,8 @@ export default async function BeerDetailPage({ params }: { params: Promise<{ slu
             <Link className="button-ghost" href="/methodology"><CircleHelp size={17} />How scoring works</Link>
           </div>
         </div>
-        <aside className="score-panel" aria-label={`BearBoard Index score ${beer.index_score.toFixed(1)} out of 100`}>
-          <p>BearBoard Index</p>
+        <aside className="score-panel" aria-label={`BeerBoard Index score ${beer.index_score.toFixed(1)} out of 100`}>
+          <p>BeerBoard Index</p>
           <strong>{beer.index_score.toFixed(1)}</strong>
           <p>Ranked #{beer.global_rank} in this demonstration release</p>
         </aside>

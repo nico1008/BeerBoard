@@ -33,7 +33,7 @@ export default async function StyleDetailPage({ params }: { params: Promise<{ sl
         <div className="panel"><h2>Related styles</h2>{related.length ? <div className="chip-list" style={{ marginTop: "1rem" }}>{related.map((item) => <Link className="chip" href={`/styles/${item.slug}`} key={item.id}>{item.name}</Link>)}</div> : <p>No directly related styles are defined in this demonstration release.</p>}</div>
       </section>
       <section className="section panel" aria-labelledby="style-sensory"><div className="section-heading"><div><h2 id="style-sensory">Typical sensory profile</h2><p>Expected style values, shown as both a chart and exact numeric list.</p></div></div><SensoryProfile values={sensory} title={`${style.name} typical sensory profile`} /></section>
-      <section className="section" aria-labelledby="style-examples"><div className="section-heading"><div><h2 id="style-examples">Indexed examples</h2><p>Demonstration beers ordered by BearBoard Index.</p></div></div>{beers.length ? <BeerRankingTable beers={beers} /> : <div className="empty-state"><h2>No examples in this release</h2><p>The style definition remains available even when no demonstration beers are indexed.</p></div>}</section>
+      <section className="section" aria-labelledby="style-examples"><div className="section-heading"><div><h2 id="style-examples">Indexed examples</h2><p>Demonstration beers ordered by BeerBoard Index.</p></div></div>{beers.length ? <BeerRankingTable beers={beers} /> : <div className="empty-state"><h2>No examples in this release</h2><p>The style definition remains available even when no demonstration beers are indexed.</p></div>}</section>
     </div>
   );
 }
