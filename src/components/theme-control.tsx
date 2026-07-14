@@ -1,0 +1,23 @@
+"use client";
+
+type Theme = "light" | "dark" | "system";
+
+export function ThemeControl({ initialTheme = "system", name = "theme" }: { initialTheme?: Theme; name?: string }) {
+  function updateTheme(nextTheme: Theme) {
+    if (nextTheme === "system") {
+      localStorage.removeItem("bearboard-theme");
+      document.documentElement.removeAttribute("data-theme");
+    } else {
+      localStorage.setItem("bearboard-theme", nextTheme);
+      document.documentElement.dataset.theme = nextTheme;
+    }
+  }
+
+  return (
+    <select className="select" name={name} defaultValue={initialTheme} onChange={(event) => updateTheme(event.target.value as Theme)}>
+      <option value="system">Use device setting</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  );
+}

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-14T21:45:00Z",
+  "title": "Design System: BearBoard",
+  "extensions": {
+    "colorMeta": {
+      "background": { "role": "neutral", "displayName": "True White", "canonical": "oklch(1 0 0)", "tonalRamp": ["oklch(0.15 0 0)", "oklch(0.28 0 0)", "oklch(0.42 0 0)", "oklch(0.56 0 0)", "oklch(0.68 0 0)", "oklch(0.8 0 0)", "oklch(0.9 0 0)", "oklch(1 0 0)"] },
+      "primary": { "role": "primary", "displayName": "Measured Terracotta", "canonical": "oklch(0.575 0.15 38)", "tonalRamp": ["oklch(0.15 0.08 38)", "oklch(0.28 0.11 38)", "oklch(0.42 0.14 38)", "oklch(0.575 0.15 38)", "oklch(0.68 0.13 38)", "oklch(0.78 0.1 38)", "oklch(0.88 0.07 38)", "oklch(0.95 0.035 38)"] },
+      "accent": { "role": "secondary", "displayName": "Deep Fermentation Teal", "canonical": "oklch(0.285 0.058 190)", "tonalRamp": ["oklch(0.15 0.04 190)", "oklch(0.285 0.058 190)", "oklch(0.4 0.065 190)", "oklch(0.52 0.07 190)", "oklch(0.64 0.065 190)", "oklch(0.75 0.055 190)", "oklch(0.86 0.045 190)", "oklch(0.95 0.025 190)"] },
+      "ink": { "role": "neutral", "displayName": "Warm Black Ink", "canonical": "oklch(0.19 0.024 32)", "tonalRamp": ["oklch(0.15 0.02 32)", "oklch(0.25 0.022 32)", "oklch(0.38 0.023 32)", "oklch(0.5 0.022 32)", "oklch(0.62 0.019 32)", "oklch(0.74 0.015 32)", "oklch(0.86 0.01 32)", "oklch(0.95 0.005 32)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Top-level catalog and detail titles only." },
+      "body": { "displayName": "Body", "purpose": "Interface copy and readable explanations." },
+      "label": { "displayName": "Metric Label", "purpose": "Measurements, dates, and compact technical labels." }
+    },
+    "shadows": [
+      { "name": "popover", "value": "0 6px 8px oklch(0.18 0.02 190 / 0.08)", "purpose": "True overlays such as the account menu only." }
+    ],
+    "motion": [
+      { "name": "state-ease", "value": "180ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Hover, focus, and open-state feedback." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "48rem" },
+      { "name": "compact", "value": "30rem" },
+      { "name": "wide", "value": "64rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main local action with measured terracotta emphasis.",
+      "html": "<button class=\"ds-btn-primary\">Add to Ledger</button>",
+      "css": ".ds-btn-primary { min-height: 44px; border: 1px solid var(--primary); border-radius: 6px; background: var(--primary); color: white; padding: 10px 15px; font-weight: 680; transition: background 180ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background: var(--primary-hover); } .ds-btn-primary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary navigation and reversible utility action.",
+      "html": "<button class=\"ds-btn-ghost\">Clear filters</button>",
+      "css": ".ds-btn-ghost { min-height: 44px; border: 1px solid var(--border-strong); border-radius: 6px; background: transparent; color: var(--ink); padding: 10px 15px; font-weight: 680; } .ds-btn-ghost:hover { border-color: var(--ink); background: var(--surface); } .ds-btn-ghost:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "High-contrast catalog and authentication field.",
+      "html": "<input class=\"ds-input\" placeholder=\"Search beer, brewery, country, or style\">",
+      "css": ".ds-input { width: 100%; min-height: 44px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--bg); color: var(--ink); padding: 10px 12px; } .ds-input::placeholder { color: var(--muted); opacity: 1; } .ds-input:focus { border-color: var(--focus); outline: 3px solid color-mix(in oklch, var(--focus) 22%, transparent); outline-offset: 0; }"
+    },
+    {
+      "name": "Taxonomy Chip",
+      "kind": "chip",
+      "description": "Country and style navigation object.",
+      "html": "<a class=\"ds-chip\" href=\"#\">Belgian Tripel</a>",
+      "css": ".ds-chip { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--bg); color: var(--muted); padding: 5px 8px; font-size: 12px; font-weight: 620; text-decoration: none; } .ds-chip:hover { border-color: var(--primary); color: var(--ink); } .ds-chip:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }"
+    },
+    {
+      "name": "Score Panel",
+      "kind": "custom",
+      "description": "Committed-color surface for index, rank, and release context.",
+      "html": "<section class=\"ds-score\"><span>BearBoard Index</span><strong>98.4</strong><span>Ranked #1</span></section>",
+      "css": ".ds-score { display: grid; min-height: 240px; align-content: space-between; border-radius: 14px; background: var(--accent); color: var(--bg); padding: 24px; } .ds-score strong { font-family: 'Geist Mono', monospace; font-size: 72px; line-height: 1; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Global Tasting Ledger",
+    "overview": "BearBoard feels like a trusted field guide that has learned how to work on a screen. True white keeps dense catalog data legible. Measured terracotta supplies the human warmth of beer culture, while deep teal gives scores and high-confidence actions a sober data voice.",
+    "keyCharacteristics": ["True-white reading surface with a restrained terracotta accent.", "Geist for interface clarity; Geist Mono only for metrics, labels, IDs, and dates.", "Dense information organized into tables, definition lists, and clear route hierarchy.", "Rounded corners remain compact and functional, never soft or toy-like.", "Motion communicates state in 150–250ms and disappears under reduced motion."],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "Terracotta is used for action and evidence emphasis only. If more than one tenth of a product screen is terracotta, the interface has become decoration.", "section": "colors" },
+      { "name": "The Metric Voice Rule", "body": "Geist Mono is reserved for values that benefit from stable width or technical distinction.", "section": "typography" },
+      { "name": "The Flat-at-Rest Rule", "body": "Content panels never use ambient shadows.", "section": "elevation" }
+    ],
+    "dos": ["Do keep body text at WCAG 2.2 AA or better.", "Do render missing measurements as Not reported.", "Do pair every visualization with exact accessible values."],
+    "donts": ["Don't build faux-scientific interfaces with tiny labels, unexplained jargon, or manufactured certainty.", "Don't use brewery-poster nostalgia, distressed textures, or ornamental heritage styling.", "Don't create generic AI dashboards from repeated floating cards, gradients, oversized hero metrics, or decorative motion.", "Don't present fictional demonstration data as verified fact."]
+  }
+}
