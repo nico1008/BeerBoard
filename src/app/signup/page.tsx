@@ -15,7 +15,7 @@ export default async function SignupPage({ searchParams }: { searchParams: Promi
     <div className="auth-shell">
       <section className="auth-panel">
         <h1>Create your account</h1>
-        <p>Save beers to a private Ledger and carry your settings across devices.</p>
+        <p>Review beers you have tried, help other curious drinkers, and save the ones you liked.</p>
         <AuthMessage error={first(params.error)} success={first(params.success)} />
         <form className="form-stack" action={signUp}>
           <input type="hidden" name="next" value={next} />

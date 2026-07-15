@@ -102,9 +102,9 @@ Use Lucide only. Do not use emoji, hand-drawn SVG icons, or an additional icon s
 - Dashboard chrome, metric hero cards, spreadsheet-first pages, and dense filter walls.
 - Gradient text, glassmorphism, decorative badges, giant rounded containers, and colored side stripes.
 - Ambient card shadows, nested panels, or identical feature-card grids.
-- Decorative motion on comparison, authentication, settings, or ledger flows.
+- Decorative motion on comparison, authentication, reviews, saved beers, or settings flows.
 - Claims that demonstration rankings represent verified real-world authority.
 
 ## Verification
 
-Broad interface work requires lint, typecheck, tests, production build, and browser checks at desktop, tablet, and mobile widths. Verify keyboard focus, reduced motion, empty results, comparison selection, saved-ledger state, and horizontal overflow.
+Broad interface work requires lint, typecheck, tests, production build, and browser checks at desktop, tablet, and mobile widths. Verify keyboard focus, reduced motion, empty results, comparison selection, review and saved-beer states, and horizontal overflow.

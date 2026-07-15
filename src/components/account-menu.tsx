@@ -1,7 +1,7 @@
 "use client";
 
 import type { User } from "@supabase/supabase-js";
-import { BookMarked, LogIn, LogOut, Settings, UserRound } from "lucide-react";
+import { Bookmark, LogIn, LogOut, MessageSquareText, Settings, UserRound } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -47,7 +47,8 @@ export function AccountMenu() {
           <strong>{account.user.user_metadata.display_name ?? "Beer lover"}</strong>
           <span>{email}</span>
         </div>
-        <Link className="popover-link" href="/ledger"><BookMarked size={17} />Ledger</Link>
+        <Link className="popover-link" href="/reviews"><MessageSquareText size={17} />My reviews</Link>
+        <Link className="popover-link" href="/saved"><Bookmark size={17} />Saved beers</Link>
         <Link className="popover-link" href="/settings"><Settings size={17} />Settings</Link>
         <form action="/auth/signout" method="post">
           <button type="submit"><LogOut size={17} />Log out</button>

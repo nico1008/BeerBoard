@@ -10,11 +10,11 @@ middleware conventions.
 <!-- END:nextjs-agent-rules -->
 
 BeerBoard is a beer intelligence and comparison product built around **Beers**, **Countries**,
-**Styles**, **Rankings**, **Comparisons**, a signed-in user's private **Ledger**, and transparent
+**Styles**, **Rankings**, **Comparisons**, public user **Reviews**, private **Saved beers**, and transparent
 methodology. It is a welcoming global guide, not an analyst dashboard.
 
 Public browsing must work without an account. Authentication is required only for owner-specific
-state such as adding or removing Ledger entries, account settings, and future genuinely user-owned
+state such as publishing reviews, adding or removing saved beers, account settings, and future genuinely user-owned
 features. Supabase is still required as the production catalog source.
 
 The product name is **BeerBoard**. Treat any conflicting name in early screenshots as obsolete
@@ -55,7 +55,7 @@ Do not duplicate large sections across documents. Update the owning document and
 - The current catalog is fictional demonstration data. Keep that disclosure visible wherever a
   ranking, score, freshness date, or aggregate could be mistaken for a verified real-world claim.
 - Every visible control must work. Remove or complete decorative search, filter, export, compare,
-  account, settings, and Ledger controls.
+  account, settings, review, and saved-beer controls.
 
 ## Screenshot capability contract
 
@@ -68,7 +68,7 @@ The following capabilities are non-negotiable:
 - Ranking: beer ranking, search, country filter, style filter, minimum-score filter, apply, clear,
   CSV export, pagination or progressive loading, and data freshness.
 - Beer details: profile routes, technical measurements, Index score, editorial verdict, sensory
-  visualization with exact accessible values, dominant descriptors, Add to Ledger, and Compare.
+  visualization with exact accessible values, dominant descriptors, Write a review, Save beer, and Compare.
 - Comparison: two human-readable beer selections, shareable slug state, same-beer prevention,
   technical and sensory tradeoffs, swap and clear actions, and comparison export.
 - Discovery: country summaries and details, country beer rankings, style distribution, searchable
@@ -150,9 +150,9 @@ Before finishing:
   `/countries/[slug]`, `/styles`, `/styles/[slug]`, `/search`, `/methodology`, `/about`, `/contact`,
   and `/data-counters`.
 - Auth routes are `/login`, `/signup`, `/forgot-password`, `/reset-password`, `/auth/callback`, and
-  `/auth/signout`. `/ledger` and `/settings` are protected.
+  `/auth/signout`. `/reviews`, `/saved`, and `/settings` are protected. `/ledger` redirects to `/saved`.
 - `src/components/` owns presentation and small interaction islands. Current client islands are
-  account state, mobile navigation, Ledger actions, export feedback, theme control, and the GSAP
+  account state, mobile navigation, review and saved-beer actions, export feedback, theme control, and the GSAP
   discovery experience.
 - `src/lib/ranking.ts` owns ranking URL parsing, validation, normalization, serialization, search
   sanitization, and the 10-row page size.
@@ -167,7 +167,7 @@ Before finishing:
 - `src/lib/supabase/public.ts` creates the browser-safe, unauthenticated server catalog client.
   `server.ts` creates cookie-backed server clients. `client.ts` creates the browser client.
   `proxy.ts` adapts auth-cookie refresh responses.
-- `src/app/actions/ledger.ts`, `src/app/actions/profile.ts`, and `src/app/auth/actions.ts` own
+- `src/app/actions/reviews.ts`, `src/app/actions/saved.ts`, `src/app/actions/profile.ts`, and `src/app/auth/actions.ts` own
   validated mutations. `src/app/api/export/*` owns public CSV responses.
 - `src/lib/supabase/database.types.ts` is generated from the applied schema. Handwritten helper
   aliases at its end narrow view fields guaranteed non-null by inner-join SQL contracts.
@@ -195,8 +195,9 @@ Validate external and mutation input with Zod. Fix contract failures in the owni
 - `descriptors` and `beer_descriptors` form a normalized many-to-many sensory vocabulary with
   intensity.
 - `profiles.id` is the matching `auth.users.id` and owns display name and theme.
-- `ledger_entries` has a composite `(user_id, beer_id)` primary key and cannot save a beer twice for
-  one user.
+- `reviews` stores one public 1–5 rating and written review per user and beer.
+- `ledger_entries` is the legacy internal table name for private saved beers. Its composite
+  `(user_id, beer_id)` primary key prevents duplicates for one user.
 - `beer_catalog`, `country_summaries`, and `style_summaries` are `security_invoker` views.
 
 ### Canonical score
@@ -255,11 +256,13 @@ types, methodology documentation, and score/ranking tests.
 - Avoid `SECURITY DEFINER`. If it is genuinely required, place it in a non-exposed schema where
   possible, set a safe search path, revoke default execution, perform explicit authorization, and
   document the reason.
-- The current `private.handle_new_user()` trigger is the only security-definer function. It creates a
-  profile from a harmless display-name default. Execution is revoked from public browser roles.
+- `private.handle_new_user()` creates a profile from a harmless display-name default.
+- `private.set_review_author()` copies the server-owned profile display name onto reviews so clients
+  cannot choose another author name. Both security-definer functions have safe search paths and
+  execution revoked from public browser roles.
 - Privileged writes must use validated server-only routes, actions, or narrowly scoped functions.
 - Every owner-specific feature needs a positive owner test and a negative cross-user test.
-  `supabase/tests/rls.sql` currently covers profiles and Ledger rows.
+  `supabase/tests/rls.sql` covers profiles, reviews, and saved-beer rows.
 - Authentication redirects must work on localhost, Vercel previews, and production.
 - Verify the Supabase project URL/reference before every remote migration. Never apply BeerBoard
   migrations to the EasyPrompt project. Do not infer a target from a nearby checkout.
@@ -290,17 +293,17 @@ a view or column contract changes.
 - Supabase Auth uses secure cookie-backed SSR through `@supabase/ssr`.
 - `src/lib/supabase/server.ts` owns cookie-aware server clients. Protected pages and actions validate
   the user with `auth.getUser()`.
-- `src/proxy.ts` refreshes claims only for Ledger, settings, auth, login, and signup routes. Keep the
+- `src/proxy.ts` refreshes claims only for reviews, saved beers, settings, auth, login, and signup routes. Keep the
   matcher focused.
 - Public catalog reads use `src/lib/supabase/public.ts`, which has no persisted session, refresh, URL
   session detection, or cookie access.
 - Do not read user state in the root layout. `AccountMenu` is the focused client boundary that loads
   account display state after mount.
 - Keep public routes cacheable where possible. Current public catalog routes use one-hour
-  revalidation; Ledger, settings, and auth-purpose pages are forced dynamic.
-- Ledger and settings must enforce authentication on the server. Client gates are only UX and never
+  revalidation; reviews, saved beers, settings, and auth-purpose pages are forced dynamic.
+- Review management, saved beers, and settings must enforce authentication on the server. Client gates are only UX and never
   authorization.
-- Signed-out users may see the real Add to Ledger action. After intent, send them to authentication
+- Signed-out users may see the real Write a review and Save beer actions. After intent, send them to authentication
   with a safe return path. Preserve the intended beer through login or signup.
 - Validate return paths as local absolute paths. Never allow protocol-relative or external redirects.
 - Reading `user_metadata.display_name` for display is not authorization. Keep profile ownership and
@@ -355,7 +358,7 @@ Deployment order:
 - Do not introduce raw component-local colors when an existing semantic token fits.
 - Use Lucide only. Do not mix icon systems, use emoji as interface icons, or add hand-drawn SVG
   controls.
-- Do not add fake settings, account, filter, search, export, comparison, or Ledger controls.
+- Do not add fake settings, account, filter, search, export, comparison, review, or saved-beer controls.
 - Prefer open editorial sections, ranked lists, and purposeful imagery. Avoid nested cards and
   repetitive card grids.
 - Avoid gradient text, decorative glassmorphism, decorative badges, excessive rounding, oversized
@@ -366,7 +369,7 @@ Deployment order:
 - Touch targets must be at least 44px on coarse pointers. Use semantic controls and clear labels.
 - Support 320px and wider without page-level horizontal overflow. Mobile layouts must recompose,
   not shrink desktop layouts.
-- Motion must explain hierarchy or state. Keep comparison, auth, settings, and Ledger calm. Respect
+- Motion must explain hierarchy or state. Keep comparison, auth, settings, reviews, and saved beers calm. Respect
   `prefers-reduced-motion`.
 - Data visualizations require exact accessible text or table/list alternatives.
 - Test long beer, brewery, style, and country names, null values, and empty results.
@@ -398,7 +401,7 @@ Current automated coverage:
   sanitization.
 - `src/lib/comparison.test.ts` covers comparison states and deterministic no-winner notes.
 - `src/lib/csv.test.ts` covers quoting, quote escaping, null text, and the UTF-8 BOM.
-- `supabase/tests/rls.sql` covers owner access and cross-user denial for profiles and Ledger rows.
+- `supabase/tests/rls.sql` covers public review reads, review ownership, private saved beers, and profiles.
 
 Critical domain coverage to preserve or add when affected:
 
@@ -412,7 +415,8 @@ Critical domain coverage to preserve or add when affected:
 - Missing measurements remaining null and rendering as **Not reported**.
 - Comparison generation, unavailable metrics, and same-beer prevention.
 - CSV delimiters, quotes, newlines, Unicode, nulls, and export filter parity.
-- Ledger ownership, duplicate prevention, owner mutations, and cross-user denial.
+- Review public reads, author ownership, owner mutations, and cross-user denial.
+- Saved-beer ownership, duplicate prevention, owner mutations, and cross-user denial.
 - Profile ownership and cross-user denial.
 
 Do not launch a dev server or browser for every UI change. Use code inspection and targeted checks for

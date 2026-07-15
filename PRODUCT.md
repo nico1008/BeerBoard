@@ -10,7 +10,7 @@ Beer lovers around the world. They range from curious newcomers to experienced e
 
 ## Product purpose
 
-BeerBoard is a welcoming global beer guide. It helps a visitor start with a feeling, place, style, or known beer and move toward a useful profile, comparison, or saved choice. The product explains technical evidence without turning discovery into a spreadsheet exercise.
+BeerBoard is a welcoming global beer guide. It helps a visitor start with a feeling, place, style, or known beer and move toward a useful profile, comparison, or shared review. The product explains technical evidence without turning discovery into a spreadsheet exercise.
 
 Success means someone can find an interesting beer, understand why it may suit them, and choose a meaningful next step in a few clear interactions.
 
@@ -25,7 +25,8 @@ BeerBoard is informed without being snobbish. It is confident without presenting
 - Discover a beer from the ranked list, search, country, or style directory.
 - Understand a beer through plain-language context, technical measurements, and sensory character.
 - Compare two named beers through differences and tradeoffs, not a declared winner.
-- Save a beer to a private ledger and return to it later.
+- Rate a beer, leave a public review, and help other curious drinkers understand it.
+- Save a beer the user liked or wants to find again.
 - Learn how rankings and demonstration data are produced.
 
 ## Anti-references

@@ -48,7 +48,8 @@ export function SiteHeader() {
           <Link className="nav-link" data-active={isActive(item.href)} href={item.href} key={item.href} onClick={() => setMobileOpen(false)}>{item.label}</Link>
         ))}
         <Link className="nav-link" href="/search" onClick={() => setMobileOpen(false)}>Search</Link>
-        <Link className="nav-link" href="/ledger" onClick={() => setMobileOpen(false)}>My ledger</Link>
+        <Link className="nav-link" href="/reviews" onClick={() => setMobileOpen(false)}>My reviews</Link>
+        <Link className="nav-link" href="/saved" onClick={() => setMobileOpen(false)}>Saved beers</Link>
       </nav>
     </header>
   );

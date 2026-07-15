@@ -8,7 +8,7 @@ Outfit is loaded through `next/font`. Lucide is the only interface icon library.
 
 ## System overview
 
-BeerBoard is a Next.js 16 App Router application hosted on Vercel. Supabase is the production database and authentication provider. PostgreSQL is the source of truth for catalog rows, assessment inputs, generated scores, rankings, release freshness, and user-owned Ledger entries.
+BeerBoard is a Next.js 16 App Router application hosted on Vercel. Supabase is the production database and authentication provider. PostgreSQL is the source of truth for catalog rows, assessment inputs, generated scores, rankings, release freshness, public user reviews, and private saved beers.
 
 Public catalog routes use Server Components and a browser-safe publishable key through `src/lib/supabase/public.ts`. They do not read cookies or authenticated state. The account control is a focused Client Component boundary. Protected routes use `src/lib/supabase/server.ts` and validate the current user with `auth.getUser()` before reading or mutating owned data.
 
@@ -17,11 +17,13 @@ Public catalog routes use Server Components and a browser-safe publishable key t
 | Surface | Route | Owning data |
 | --- | --- | --- |
 | Global ranking | `/beers` | `beer_catalog` security-invoker view |
-| Beer detail | `/beers/[slug]` | `beer_catalog`, descriptors |
+| Beer detail | `/beers/[slug]` | `beer_catalog`, descriptors, public `reviews` |
 | Comparison | `/compare` | Two `beer_catalog` rows |
 | Countries | `/countries`, `/countries/[slug]` | `country_summaries`, filtered catalog |
 | Styles | `/styles`, `/styles/[slug]` | `style_summaries`, filtered catalog |
-| Ledger | `/ledger` | User-owned `ledger_entries`, joined catalog |
+| My reviews | `/reviews` | User-owned `reviews`, joined catalog |
+| Saved beers | `/saved` | User-owned `ledger_entries`, joined catalog |
+| Legacy saved-beer redirect | `/ledger` | Redirects to `/saved` |
 | Settings | `/settings` | User-owned `profiles` row |
 | Auth | `/login`, `/signup`, reset routes | Supabase Auth |
 | Exports | `/api/export/beers`, `/api/export/compare` | Current validated query result |
@@ -40,7 +42,8 @@ Public catalog routes use Server Components and a browser-safe publishable key t
 ### Accounts
 
 - `profiles` has the same UUID as `auth.users`. It stores display name and theme preference.
-- `ledger_entries` has a composite `(user_id, beer_id)` primary key and cannot contain duplicates.
+- `reviews` stores one 1–5 rating and 10–1000 character review per user and beer. Reviews are public; only their author can create, update, or delete them.
+- `ledger_entries` is the legacy internal table name for private saved beers. Its composite `(user_id, beer_id)` primary key prevents duplicates.
 
 ### Views
 
@@ -79,9 +82,10 @@ RLS is enabled on every public table.
 - `anon` and `authenticated` receive explicit `SELECT` grants and read-only policies on catalog tables.
 - Browser roles receive no insert, update, or delete grants on catalog entities, assessment inputs, rankings, descriptors, or dataset releases.
 - A user can select and update only the profile where `auth.uid() = id`.
-- A user can select, insert, and delete only Ledger rows where `auth.uid() = user_id`.
+- Reviews are publicly readable. Authenticated users can insert, update, and delete only reviews where `auth.uid() = user_id`.
+- A user can select, insert, and delete only their saved-beer rows where `auth.uid() = user_id`.
 - Profile updates use both `USING` and `WITH CHECK`.
-- The user-creation trigger is the only `SECURITY DEFINER` function. It lives in the non-exposed `private` schema, has an empty search path, and has execution revoked from public roles.
+- The user-creation and review-author triggers are `SECURITY DEFINER` functions in the non-exposed `private` schema. Both have an empty search path and execution revoked from public roles. The review trigger snapshots the server-owned profile display name so clients cannot choose another author name.
 
 `supabase/tests/rls.sql` provides negative cross-user tests and positive owner tests.
 
@@ -104,7 +108,7 @@ RLS is enabled on every public table.
 
 ## Caching and rendering
 
-Public catalog pages export a one-hour revalidation interval and use no user cookies. Protected routes export `dynamic = "force-dynamic"` and must not be cached. Responses that update auth cookies inherit Supabase SSR no-store headers through the proxy cookie adapter.
+Public catalog pages export a one-hour revalidation interval and use no user cookies. Public reviews load through the browser-safe catalog client. The review form resolves the signed-in user's draft after mount, keeping the page cacheable. Protected routes export `dynamic = "force-dynamic"` and must not be cached. Responses that update auth cookies inherit Supabase SSR no-store headers through the proxy cookie adapter.
 
 ## Deployment
 

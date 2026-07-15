@@ -365,6 +365,54 @@ export type Database = {
         }
         Relationships: []
       }
+      reviews: {
+        Row: {
+          author_name: string
+          beer_id: number
+          body: string
+          created_at: string
+          id: number
+          rating: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          author_name?: string
+          beer_id: number
+          body: string
+          created_at?: string
+          id?: never
+          rating: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          author_name?: string
+          beer_id?: number
+          body?: string
+          created_at?: string
+          id?: never
+          rating?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_beer_id_fkey"
+            columns: ["beer_id"]
+            isOneToOne: false
+            referencedRelation: "beer_catalog"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reviews_beer_id_fkey"
+            columns: ["beer_id"]
+            isOneToOne: false
+            referencedRelation: "beers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       ledger_entries: {
         Row: {
           beer_id: number

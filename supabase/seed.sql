@@ -1,6 +1,6 @@
 begin;
 
-truncate table public.ledger_entries, public.beer_descriptors, public.descriptors,
+truncate table public.reviews, public.ledger_entries, public.beer_descriptors, public.descriptors,
   public.beer_assessments, public.beers, public.breweries, public.styles,
   public.countries, public.dataset_releases restart identity cascade;
 

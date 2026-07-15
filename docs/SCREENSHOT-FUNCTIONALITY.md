@@ -7,7 +7,8 @@ This is the implementation checklist for the four supplied screenshots. The scre
 - “BeerBoard Index” is a deterministic 0–100 score derived from one canonical assessment formula.
 - The seeded release contains exactly 50 beers. All counts and aggregates derive from those database rows.
 - Search applies to beer, brewery, country, and style names.
-- “Add to Ledger” means a signed-in user-owned saved-beer record, not a decorative bookmark.
+- Reviews use a 1–5 rating and a written tasting note. They are public and owner-editable.
+- “Save beer” means a signed-in user-owned private saved-beer record, not a decorative bookmark.
 - Comparison notes describe tradeoffs. They never manufacture an overall winner.
 - CSV exports reflect the current filtered or compared result and provide success or error feedback.
 
@@ -66,7 +67,8 @@ This is the implementation checklist for the four supplied screenshots. The scre
 | Visualization alternative | Provide table/list with the same values | `SensoryProfile` | same values | Always accessible; optional disclosure visually | Screen-reader test |
 | Dominant descriptors | Show descriptor names and intensities | `DescriptorList` | `beer_descriptors` | Wraps as chips/list | Query test |
 | Specimen artwork | Intentional generated bottle/label treatment | `BeerSpecimen` | beer identity fields | Compact above content on mobile | Image/alt test |
-| Add to Ledger | Save/remove current beer; prompt auth when signed out | `LedgerButton`, server action | `ledger_entries`, Auth | Full-width mobile action | Signed-in/out tests |
+| Write a review | Publish or update a 1–5 rating and tasting note; prompt auth when signed out | `ReviewForm`, server action | `reviews`, Auth | Primary full-width mobile action | Public-read and ownership tests |
+| Save beer | Save/remove current beer; prompt auth when signed out | `SaveBeerButton`, server action | `ledger_entries`, Auth | Secondary full-width mobile action | Signed-in/out tests |
 | Compare | Add beer to Subject A and navigate to comparison | `CompareLink` | beer ID | Full-width mobile action | Query-string test |
 | Methodology context | Link to scoring explanation | `/methodology` | `dataset_releases` | Inline callout | Link test |
 | Not found | Handle invalid slug credibly | `not-found.tsx` | Empty query | Responsive | 404 test |
@@ -125,7 +127,8 @@ This is the implementation checklist for the four supplied screenshots. The scre
 | Log out | End server session and return to public catalog | server action | Supabase Auth | Account menu action | Auth test |
 | Password reset | Request reset email and set a new password | `/forgot-password`, `/reset-password` | Supabase Auth | Single-column forms | Auth flow test |
 | Auth callback | Exchange PKCE code and honor safe return path | `/auth/callback` | Supabase Auth | Nonvisual | Route test |
-| Ledger | List and remove user-owned saved beers | `/ledger` | `ledger_entries`, catalog joins | Responsive list | Ownership test |
+| My reviews | List the signed-in user's reviews and link to editing | `/reviews` | `reviews`, catalog joins | Responsive editorial list | Ownership test |
+| Saved beers | List and remove private saved beers | `/saved` | `ledger_entries`, catalog joins | Responsive list | Ownership test |
 | Settings | Update display name and theme preference | `/settings` | `profiles` | Single-column form | Mutation/RLS test |
 | Theme | Light, dark, or system mode with persistent accessible control | `ThemeControl` | profile preference when signed in; local storage otherwise | Available in mobile/account navigation | Interaction test |
 | Loading | Use structural skeletons only around real async reads | route `loading.tsx` | Any asynchronous query | Matches final layout | Suspense test |

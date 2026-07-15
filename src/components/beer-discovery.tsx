@@ -3,7 +3,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { ArrowRight, BookMarked, GitCompareArrows, Map, Shapes } from "lucide-react";
+import { ArrowRight, GitCompareArrows, Map, MessageSquareText, Shapes } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 
@@ -59,7 +59,7 @@ export function BeerDiscovery({ styles }: { styles: StyleLink[] }) {
         <Link className="discovery-card discovery-card-wide" href="/countries"><Map aria-hidden="true" /><span><strong>Follow beer across the map</strong><small>Meet the places and brewing cultures represented in the current catalog.</small></span><ArrowRight aria-hidden="true" /></Link>
         <Link className="discovery-card discovery-card-narrow discovery-card-amber" href="/styles"><Shapes aria-hidden="true" /><span><strong>Find your style</strong><small>Learn what separates a bright pilsner from a rich quadrupel.</small></span><ArrowRight aria-hidden="true" /></Link>
         <Link className="discovery-card discovery-card-narrow discovery-card-green" href="/compare"><GitCompareArrows aria-hidden="true" /><span><strong>Taste the difference</strong><small>Put two beers side by side without turning either one into a winner or loser.</small></span><ArrowRight aria-hidden="true" /></Link>
-        <Link className="discovery-card discovery-card-wide" href="/ledger"><BookMarked aria-hidden="true" /><span><strong>Keep the ones you want to remember</strong><small>Save a personal shortlist and return whenever the next bottle catches your eye.</small></span><ArrowRight aria-hidden="true" /></Link>
+        <Link className="discovery-card discovery-card-wide" href="/beers"><MessageSquareText aria-hidden="true" /><span><strong>Share what you tasted</strong><small>Rate a beer and leave a useful note for the next curious drinker.</small></span><ArrowRight aria-hidden="true" /></Link>
       </section>
 
       <section className="container discovery-story" aria-labelledby="story-title">

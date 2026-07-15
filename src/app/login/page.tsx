@@ -15,7 +15,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
     <div className="auth-shell">
       <section className="auth-panel">
         <h1>Welcome back</h1>
-        <p>Log in to manage your Ledger and profile settings.</p>
+        <p>Log in to write reviews, update your tasting notes, and manage saved beers.</p>
         <AuthMessage error={first(params.error)} success={first(params.success)} reason={first(params.reason)} />
         <form className="form-stack" action={signIn}>
           <input type="hidden" name="next" value={next} />

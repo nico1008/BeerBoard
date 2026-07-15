@@ -11,6 +11,10 @@ import { PAGE_SIZE, sanitizeSearchTerm, type RankingFilters } from "@/lib/rankin
 
 export type DatasetRelease = Database["public"]["Tables"]["dataset_releases"]["Row"];
 export type BeerDescriptor = { name: string; category: string; intensity: number };
+export type BeerReview = Pick<
+  Database["public"]["Tables"]["reviews"]["Row"],
+  "id" | "rating" | "body" | "author_name" | "created_at" | "updated_at"
+>;
 
 export class CatalogError extends Error {
   constructor(message: string, public readonly causeMessage?: string) {
@@ -105,6 +109,16 @@ export async function getBeerDescriptors(beerId: number) {
     const descriptor = descriptorMap.get(link.descriptor_id);
     return descriptor ? [{ name: descriptor.name, category: descriptor.category, intensity: link.intensity }] : [];
   }) as BeerDescriptor[];
+}
+
+export async function getBeerReviews(beerId: number) {
+  const { data, error } = await getPublicClient()
+    .from("reviews")
+    .select("id,rating,body,author_name,created_at,updated_at")
+    .eq("beer_id", beerId)
+    .order("updated_at", { ascending: false });
+  assertNoError(error, "Beer reviews could not be loaded.");
+  return (data ?? []) as BeerReview[];
 }
 
 export async function listCountries() {

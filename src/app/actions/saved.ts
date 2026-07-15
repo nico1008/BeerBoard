@@ -6,13 +6,13 @@ import { createClient } from "@/lib/supabase/server";
 
 const beerIdSchema = z.number().int().positive();
 
-export type LedgerActionResult =
+export type SavedBeerActionResult =
   | { status: "saved" }
   | { status: "removed" }
   | { status: "auth_required" }
   | { status: "error"; message: string };
 
-export async function toggleLedger(beerIdInput: number): Promise<LedgerActionResult> {
+export async function toggleSavedBeer(beerIdInput: number): Promise<SavedBeerActionResult> {
   const parsed = beerIdSchema.safeParse(beerIdInput);
   if (!parsed.success) return { status: "error", message: "That beer could not be identified." };
 
@@ -26,7 +26,7 @@ export async function toggleLedger(beerIdInput: number): Promise<LedgerActionRes
     .eq("user_id", user.id)
     .eq("beer_id", parsed.data)
     .maybeSingle();
-  if (lookupError) return { status: "error", message: "Your Ledger could not be checked." };
+  if (lookupError) return { status: "error", message: "Your saved beers could not be checked." };
 
   if (existing) {
     const { error } = await supabase
@@ -34,13 +34,13 @@ export async function toggleLedger(beerIdInput: number): Promise<LedgerActionRes
       .delete()
       .eq("user_id", user.id)
       .eq("beer_id", parsed.data);
-    if (error) return { status: "error", message: "The beer could not be removed from your Ledger." };
-    revalidatePath("/ledger");
+    if (error) return { status: "error", message: "The beer could not be removed from your saved beers." };
+    revalidatePath("/saved");
     return { status: "removed" };
   }
 
   const { error } = await supabase.from("ledger_entries").insert({ user_id: user.id, beer_id: parsed.data });
-  if (error) return { status: "error", message: "The beer could not be saved to your Ledger." };
-  revalidatePath("/ledger");
+  if (error) return { status: "error", message: "The beer could not be saved." };
+  revalidatePath("/saved");
   return { status: "saved" };
 }

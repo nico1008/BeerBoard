@@ -1,6 +1,6 @@
 # BeerBoard
 
-BeerBoard is a welcoming global beer guide for beer lovers around the world. It combines an exactly 50-entry demonstration ranking, approachable beer profiles, comparisons, country and style discovery, Supabase authentication, and a private user ledger.
+BeerBoard is a welcoming global beer guide for beer lovers around the world. It combines an exactly 50-entry demonstration ranking, approachable beer profiles, public user reviews, comparisons, country and style discovery, and private saved beers.
 
 The initial catalog is fictional demonstration data. The interface discloses that status and does not present the entries as verified claims about real breweries or beers.
 
@@ -72,7 +72,7 @@ npm run test:db
 npm run build
 ```
 
-The database test requires a running local Supabase stack. It proves that one authenticated user cannot read, update, insert, or delete another user’s Ledger or profile rows.
+The database test requires a running local Supabase stack. It covers public review reads, review ownership, private saved beers, and profile ownership.
 
 ## Documentation
 
