@@ -93,6 +93,15 @@ RLS is enabled on every public table.
 - Comparison notes are deterministic TypeScript descriptions of measurable tradeoffs. They do not create an overall winner.
 - CSV exports use the same validated URL filter state as the current screen.
 
+### Known contract gaps
+
+- The style detail route currently coerces an absent sensory-profile value to `0`. Missing sensory
+  values must remain missing and render as “Not reported.”
+- Some country/style aggregate surfaces render an em dash for missing values, and the empty-catalog
+  mean path returns `0`. These must use the shared missing-value contract instead.
+- The ranking route shows the release audit date, while the demonstration disclosure is only in the
+  global footer. A release-level disclosure must appear with the ranked result and export context.
+
 ## Caching and rendering
 
 Public catalog pages export a one-hour revalidation interval and use no user cookies. Protected routes export `dynamic = "force-dynamic"` and must not be cached. Responses that update auth cookies inherit Supabase SSR no-store headers through the proxy cookie adapter.
