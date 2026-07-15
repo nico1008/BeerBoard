@@ -1,5 +1,6 @@
-import { ArrowUpRight, GitCompareArrows, MapPin } from "lucide-react";
+import { ArrowUpRight, GitCompareArrows } from "lucide-react";
 import Link from "next/link";
+import { CountryFlag } from "@/components/country-flag";
 import type { BeerCatalogRow } from "@/lib/supabase/database.types";
 
 export function BeerRankingTable({ beers }: { beers: BeerCatalogRow[] }) {
@@ -12,7 +13,7 @@ export function BeerRankingTable({ beers }: { beers: BeerCatalogRow[] }) {
             <h3><Link href={`/beers/${beer.slug}`}>{beer.name}<ArrowUpRight aria-hidden="true" size={19} /></Link></h3>
             <p>{beer.brewery_name}</p>
             <div className="ranked-beer-links">
-              <Link href={`/countries/${beer.country_slug}`}><MapPin aria-hidden="true" size={14} />{beer.country_name}</Link>
+              <Link href={`/countries/${beer.country_slug}`}><CountryFlag isoCode={beer.iso_code} />{beer.country_name}</Link>
               <Link href={`/styles/${beer.style_slug}`}>{beer.style_name}</Link>
             </div>
           </div>

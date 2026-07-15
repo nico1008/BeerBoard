@@ -7,7 +7,8 @@ import { useState } from "react";
 import { AccountMenu } from "@/components/account-menu";
 
 const navigation = [
-  { href: "/beers", label: "Discover" },
+  { href: "/", label: "Home" },
+  { href: "/beers", label: "Rankings" },
   { href: "/countries", label: "Countries" },
   { href: "/styles", label: "Styles" },
   { href: "/compare", label: "Compare" },
@@ -21,7 +22,7 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <Link className="wordmark" href="/beers" aria-label="BeerBoard home"><Beer aria-hidden="true" size={22} />BeerBoard</Link>
+        <Link className="wordmark" href="/" aria-label="BeerBoard home"><Beer aria-hidden="true" size={22} />BeerBoard</Link>
         <nav className="primary-nav" aria-label="Primary navigation">
           {navigation.map((item) => (
             <Link className="nav-link" data-active={isActive(item.href)} href={item.href} key={item.href}>{item.label}</Link>

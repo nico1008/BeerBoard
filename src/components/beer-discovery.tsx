@@ -3,7 +3,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { ArrowDown, ArrowRight, BookMarked, GitCompareArrows, Map, Shapes } from "lucide-react";
+import { ArrowRight, BookMarked, GitCompareArrows, Map, Shapes } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 
@@ -38,7 +38,7 @@ export function BeerDiscovery({ styles }: { styles: StyleLink[] }) {
             <h1 id="discovery-title">Find a beer worth <span className="hero-inline-pour" aria-hidden="true" /> talking about.</h1>
             <p>Explore standout beers by taste, place, and style. BeerBoard keeps the details clear, so curiosity can lead the way.</p>
             <div className="hero-actions">
-              <Link className="button" href="#ranking">Browse the ranking<ArrowDown aria-hidden="true" size={18} /></Link>
+              <Link className="button" href="/beers">Browse the ranking<ArrowRight aria-hidden="true" size={18} /></Link>
               <Link className="text-link" href="/compare">Compare two beers<ArrowRight aria-hidden="true" size={17} /></Link>
             </div>
           </div>

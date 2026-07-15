@@ -429,24 +429,6 @@ summary {
   font-weight: 700;
 }
 
-.dataset-notice {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-  margin-top: 1.25rem;
-  padding: 0.9rem 1rem;
-  border: 1px solid color-mix(in oklch, var(--primary) 45%, var(--border));
-  border-radius: var(--radius-md);
-  background: var(--primary-soft);
-  color: var(--ink);
-}
-
-.dataset-notice p {
-  max-width: 78ch;
-  margin: 0;
-  font-size: 0.9rem;
-}
-
 .section {
   margin-top: 3rem;
 }
@@ -1491,7 +1473,7 @@ p { text-wrap: pretty; }
 .story-chapter p { max-width: 35rem; margin: 1rem 0 1.4rem; color: var(--muted); font-size: 1.08rem; }
 .story-chapter a { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 700; }
 
-.ranking-page { scroll-margin-top: 5rem; padding-top: clamp(6rem, 12vw, 10rem); }
+.ranking-page { padding-top: clamp(3.5rem, 7vw, 6rem); }
 .ranking-header { display: flex; align-items: end; justify-content: space-between; gap: 2rem; padding-bottom: 2rem; border-bottom: 2px solid var(--ink); }
 .ranking-header > div:first-child > p { margin: 0 0 0.6rem; color: var(--primary-hover); font-weight: 750; }
 .ranking-header h2 { margin: 0; font-size: clamp(2.6rem, 6vw, 5.4rem); letter-spacing: -0.06em; line-height: 0.95; }
@@ -1517,6 +1499,7 @@ p { text-wrap: pretty; }
 .ranked-beer p { margin: 0.25rem 0 0.7rem; color: var(--muted); }
 .ranked-beer-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; }
 .ranked-beer-links a { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--muted); font-size: 0.84rem; }
+.country-flag { display: block; width: 1.5rem; height: 1.125rem; flex: none; object-fit: cover; box-shadow: 0 0 0 1px var(--border); }
 .ranked-measure strong { display: block; margin-top: 0.25rem; font-variant-numeric: tabular-nums; }
 .ranked-score strong { display: block; margin-top: 0.1rem; font-size: 1.55rem; font-variant-numeric: tabular-nums; }
 .rank-compare { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 0.45rem; padding: 0.45rem 0.7rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.86rem; font-weight: 650; text-decoration: none; }
@@ -1574,6 +1557,7 @@ p { text-wrap: pretty; }
 .compare-subject span { color: var(--muted); font-size: 0.8rem; }
 .compare-subject h2 { margin: 0.5rem 0 0; font-size: clamp(1.7rem, 3vw, 2.8rem); }
 .compare-subject p { margin: 0.35rem 0; color: var(--muted); }
+.country-inline { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; }
 .compare-subject > strong { font-size: clamp(2rem, 4vw, 3.4rem); font-variant-numeric: tabular-nums; }
 .comparison-section { padding: 2rem 0 0; border-top: 0; background: transparent; }
 .comparison-section > h2 { margin-bottom: 1rem; }
@@ -1590,7 +1574,9 @@ p { text-wrap: pretty; }
 .country-entry { display: grid; min-height: 9rem; grid-template-columns: 3rem minmax(13rem, 1fr) minmax(12rem, 0.7fr) minmax(10rem, 0.7fr) auto; align-items: center; gap: 1.25rem; border-bottom: 1px solid var(--border-strong); }
 .country-entry > span:first-child { align-self: start; padding-top: 1.6rem; color: var(--muted); font-size: 0.75rem; font-variant-numeric: tabular-nums; }
 .country-entry h3 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.7rem); letter-spacing: -0.045em; }
-.country-entry > div > p { margin: 0; color: var(--muted); font-size: 0.85rem; }
+.country-entry > div > p, .country-identity p { margin: 0; color: var(--muted); font-size: 0.85rem; }
+.country-identity { display: flex; align-items: center; gap: 1rem; }
+.country-entry-flag { width: 3.25rem; height: 2.4375rem; }
 .country-coverage strong { font-size: 0.95rem; }
 .country-leader { display: grid; gap: 0.25rem; }
 .country-leader > span:first-child, .style-leading > span:first-child { color: var(--muted); font-size: 0.75rem; }
@@ -1623,6 +1609,7 @@ p { text-wrap: pretty; }
 
 .place-profile-hero, .style-profile-hero { display: grid; min-height: 30rem; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 3rem; padding-bottom: 3rem; border-bottom: 2px solid var(--ink); }
 .place-profile-hero > div:first-child > svg, .style-profile-hero > div:first-child > svg { color: var(--primary-hover); }
+.place-profile-hero .country-hero-flag { width: 5rem; height: 3.75rem; }
 .place-profile-hero > div:first-child > p, .style-profile-hero > div:first-child > p { margin: 0.7rem 0 0; color: var(--primary-hover); font-weight: 700; }
 .place-profile-hero h1, .style-profile-hero h1 { margin: 0.35rem 0 0; font-size: clamp(3.8rem, 8vw, 7.2rem); letter-spacing: -0.07em; line-height: 0.9; }
 .place-profile-hero > div:first-child > span, .style-profile-hero > div:first-child > span { display: block; max-width: 48rem; margin-top: 1.5rem; color: var(--muted); font-size: 1.12rem; }
