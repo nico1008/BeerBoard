@@ -7,7 +7,6 @@ import { useState } from "react";
 import { AccountMenu } from "@/components/account-menu";
 
 const navigation = [
-  { href: "/", label: "Home" },
   { href: "/beers", label: "Rankings" },
   { href: "/countries", label: "Countries" },
   { href: "/styles", label: "Styles" },
