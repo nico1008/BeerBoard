@@ -1,0 +1,281 @@
+.page {
+  overflow-x: clip;
+}
+
+.hero {
+  position: relative;
+  min-height: 30rem;
+  overflow: hidden;
+  background: oklch(0.18 0.05 150);
+  color: oklch(0.98 0.006 80);
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+  will-change: transform, opacity;
+}
+
+.heroShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, oklch(0.15 0.045 150 / 0.98) 0%, oklch(0.15 0.045 150 / 0.88) 31%, oklch(0.15 0.045 150 / 0.22) 58%, transparent 76%);
+}
+
+.heroInner {
+  position: relative;
+  display: flex;
+  width: min(calc(100% - 2rem), var(--content));
+  min-height: 30rem;
+  align-items: center;
+  margin-inline: auto;
+}
+
+.heroCopy {
+  max-width: 52rem;
+  padding: 3.5rem 0;
+}
+
+.heroCopy h1 {
+  max-width: 52rem;
+  margin: 0;
+  font-size: clamp(3.8rem, 6.6vw, 6rem);
+  font-weight: 760;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.heroCopy p {
+  max-width: 39rem;
+  margin: 1.5rem 0 0;
+  color: oklch(0.9 0.018 90);
+  font-size: 1.16rem;
+  text-wrap: pretty;
+}
+
+.familyExplorer {
+  display: grid;
+  width: min(calc(100% - 2rem), var(--content));
+  grid-template-columns: minmax(12rem, 0.28fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  margin: 3rem auto 0;
+  padding-bottom: 1rem;
+}
+
+.familyLead {
+  align-self: start;
+  padding-top: 0.2rem;
+}
+
+.familyLead h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.familyLead p {
+  max-width: 18rem;
+  margin: 1rem 0 0;
+  color: var(--muted);
+}
+
+.familyRail {
+  display: flex;
+  min-height: 21rem;
+  overflow: hidden;
+  border-block: 1px solid var(--border-strong);
+}
+
+.familyLink {
+  position: relative;
+  display: flex;
+  min-width: 6.5rem;
+  flex: 1 1 20%;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  overflow: hidden;
+  padding: 1.25rem;
+  border-right: 1px solid oklch(1 0 0 / 0.35);
+  color: white;
+  text-decoration: none;
+  transition: flex 320ms var(--ease), filter 220ms var(--ease);
+}
+
+.familyLink:last-child {
+  border-right: 0;
+}
+
+.familyLink:hover,
+.familyLink:focus-visible {
+  flex: 1.8 1 36%;
+}
+
+.familyImage {
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 700ms var(--ease);
+}
+
+.familyLink:hover .familyImage,
+.familyLink:focus-visible .familyImage {
+  transform: scale(1.08);
+}
+
+.familyWash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 18%, oklch(0.12 0.025 150 / 0.16) 45%, oklch(0.12 0.025 150 / 0.93) 100%);
+}
+
+.familyLink[data-tone="lager"] .familyWash {
+  background: linear-gradient(180deg, transparent 18%, oklch(0.28 0.08 75 / 0.18) 45%, oklch(0.19 0.055 75 / 0.94) 100%);
+}
+
+.familyLink[data-tone="fruit"] .familyWash {
+  background: linear-gradient(180deg, transparent 18%, oklch(0.35 0.11 20 / 0.18) 45%, oklch(0.2 0.075 20 / 0.94) 100%);
+}
+
+.familyLink[data-tone="hop"] .familyWash {
+  background: linear-gradient(180deg, transparent 18%, oklch(0.28 0.08 145 / 0.14) 45%, oklch(0.17 0.055 145 / 0.94) 100%);
+}
+
+.familyContent {
+  position: relative;
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.familyContent strong {
+  font-size: clamp(1.2rem, 1.8vw, 1.7rem);
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.familyContent small {
+  max-width: 15rem;
+  color: oklch(0.9 0.012 80);
+  line-height: 1.35;
+  opacity: 0;
+  transform: translateY(0.35rem);
+  transition: opacity 180ms var(--ease), transform 220ms var(--ease);
+}
+
+.familyLink:hover small,
+.familyLink:focus-visible small {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.familyLink > svg {
+  position: relative;
+  flex: none;
+}
+
+.directory {
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 64rem) {
+  .heroImage {
+    object-position: 57% center;
+  }
+
+  .familyExplorer {
+    grid-template-columns: minmax(10rem, 0.22fr) minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .familyLink {
+    min-width: 5rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .hero,
+  .heroInner {
+    min-height: 27rem;
+  }
+
+  .heroImage {
+    object-position: 60% center;
+  }
+
+  .heroShade {
+    background: oklch(0.14 0.045 150 / 0.72);
+  }
+
+  .heroCopy {
+    align-self: end;
+    padding: 3rem 0;
+  }
+
+  .heroCopy h1 {
+    max-width: 42rem;
+    font-size: clamp(3.2rem, 12vw, 5rem);
+  }
+
+  .heroCopy p {
+    max-width: 33rem;
+  }
+
+  .familyExplorer {
+    display: block;
+    margin-top: 2.5rem;
+  }
+
+  .familyLead p {
+    max-width: 34rem;
+  }
+
+  .familyRail {
+    min-height: 0;
+    flex-direction: column;
+    margin-top: 1.5rem;
+  }
+
+  .familyLink {
+    min-height: 8rem;
+    flex: none;
+    border-right: 0;
+    border-bottom: 1px solid oklch(1 0 0 / 0.35);
+  }
+
+  .familyLink:hover,
+  .familyLink:focus-visible {
+    flex: none;
+  }
+
+  .familyContent small {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 30rem) {
+  .hero,
+  .heroInner {
+    min-height: 25rem;
+  }
+
+  .heroCopy h1 {
+    font-size: 3.15rem;
+  }
+
+  .heroCopy p {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .familyLink,
+  .familyImage,
+  .familyContent small {
+    transition-duration: 0.01ms;
+  }
+}
