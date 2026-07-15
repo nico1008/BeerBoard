@@ -139,8 +139,13 @@ Before finishing:
 - Run checks proportional to risk. Do not commit failing work.
 - Update documentation for changes to architecture, schema, routes, auth, deployment, design tokens,
   commands, or workflow.
-- Commit only intended files. The subject must be professional and emoji-prefixed, for example
+- **A commit is mandatory when the task changes repository-tracked files.** Stage and commit all and
+  only the intended files before sending the final response, unless the user explicitly says not to
+  commit. Do not leave completed work merely unstaged or uncommitted.
+- Use a professional, emoji-prefixed commit subject, for example
   `📝 Add BeerBoard agent operating guide`.
+- After committing, run `git status` again and report the commit hash and subject. If a commit cannot
+  be created, state the reason clearly instead of presenting the work as complete.
 
 ## Project map and ownership
 
@@ -437,4 +442,5 @@ and mobile widths, keyboard flow, reduced motion, signed-in/out states, and hori
 - Lint, strict TypeScript, tests, database checks, build, and browser checks were run in proportion to
   risk, with skipped prerequisites stated plainly.
 - Relevant docs were updated without copying large sections between them.
-- `git diff` contains only intended work and the commit subject is emoji-prefixed.
+- All intended tracked changes were committed unless the user explicitly opted out.
+- The final `git status` contains no unintended work, and the commit subject is emoji-prefixed.
