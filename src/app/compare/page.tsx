@@ -31,7 +31,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
 
       {sameBeer ? <div className="empty-state"><h2>Choose two different beers</h2><p>Keep either selection, then choose another beer for the other side.</p></div>
         : invalid ? <div className="empty-state"><h2>That beer is not in this release</h2><p>Choose a beer from the current catalog. Any valid selection has been preserved.</p></div>
-        : !complete ? <div className="comparison-invitation"><div className="comparison-pour" aria-hidden="true" /><h2>Two beers, one clear view</h2><p>Choose a beer for each side. Your selections stay in the URL, so you can share the comparison.</p></div>
+        : !complete ? <div className="comparison-invitation"><h2>Start with two beers.</h2><p>Choose one beer for each side. Your selections stay in the URL, ready to revisit or share.</p></div>
         : left && right ? <>
           <div className="ranking-summary"><p>Comparing {left.name} and {right.name}</p><ExportButton href={`/api/export/compare?a=${left.slug}&b=${right.slug}`} label="Download comparison" /></div>
           <section className="compare-subjects" aria-label="Selected beers">

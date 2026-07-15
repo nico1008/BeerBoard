@@ -19,7 +19,6 @@ export function BeerDiscovery({ styles }: { styles: StyleLink[] }) {
     if (reduced) return;
     const media = gsap.matchMedia();
     media.add("(min-width: 900px)", () => {
-      gsap.to(".hero-pour-inner", { scale: 1.08, yPercent: 8, ease: "none", scrollTrigger: { trigger: ".discovery-hero", start: "top top", end: "bottom top", scrub: 0.7 } });
       gsap.utils.toArray<HTMLElement>(".story-chapter").forEach((chapter) => {
         gsap.fromTo(chapter, { opacity: 0.42, scale: 0.93 }, { opacity: 1, scale: 1, ease: "none", scrollTrigger: { trigger: chapter, start: "top 72%", end: "center 52%", scrub: 0.6 } });
       });
@@ -35,16 +34,12 @@ export function BeerDiscovery({ styles }: { styles: StyleLink[] }) {
       <section className="discovery-hero" aria-labelledby="discovery-title">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <h1 id="discovery-title">Find a beer worth <span className="hero-inline-pour" aria-hidden="true" /> talking about.</h1>
+            <h1 id="discovery-title">Find a beer worth talking about.</h1>
             <p>Explore standout beers by taste, place, and style. BeerBoard keeps the details clear, so curiosity can lead the way.</p>
             <div className="hero-actions">
               <Link className="button" href="/beers">Browse the ranking<ArrowRight aria-hidden="true" size={18} /></Link>
               <Link className="text-link" href="/compare">Compare two beers<ArrowRight aria-hidden="true" size={17} /></Link>
             </div>
-          </div>
-          <div className="hero-pour" aria-hidden="true">
-            <div className="hero-pour-inner"><div className="beer-glass"><span className="beer-foam" /><span className="beer-liquid"><i /><i /><i /><i /></span></div></div>
-            <p>From crisp lagers to deep imperial stouts</p>
           </div>
         </div>
       </section>

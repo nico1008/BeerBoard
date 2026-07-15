@@ -16,10 +16,10 @@ colors:
 typography:
   display:
     fontFamily: "Outfit, Outfit Fallback, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "6.5rem"
+    fontSize: "6rem"
     fontWeight: 760
-    lineHeight: 0.92
-    letterSpacing: "-0.065em"
+    lineHeight: 0.95
+    letterSpacing: "-0.04em"
   body:
     fontFamily: "Outfit, Outfit Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
@@ -56,7 +56,7 @@ The three-word direction is **curious, welcoming, worldly**.
 
 - Outfit is the product family for display, navigation, controls, and body text.
 - Scores, measurements, ranks, and dates use Outfit with tabular numerals.
-- Top-level editorial titles use tight leading and may reach 6.5rem on wide screens.
+- Top-level editorial titles use tight leading, letter spacing no tighter than -0.04em, and may reach 6rem on wide screens.
 - Body copy stays at or below 72 characters per line where practical.
 - Avoid repeated uppercase eyebrows. Use short sentence-case orientation text only when it adds meaning.
 
