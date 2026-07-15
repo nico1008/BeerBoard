@@ -61,14 +61,14 @@ export default async function StylesPage({ searchParams }: { searchParams: Promi
                 <p>{familyStyles.map((style) => style.name).join(" · ")}</p>
               </div>
               <span className={stylesModule.familyCount}>{familyStyles.length} {familyStyles.length === 1 ? "style" : "styles"}</span>
-              <span className={stylesModule.familyMark} aria-hidden="true"><i /><i /><i /></span>
+              <span className={stylesModule.familyMark} aria-hidden="true" />
             </header>
 
             <div className={stylesModule.styleList}>
               {familyStyles.map((style) => (
                 <article className={stylesModule.styleEntry} key={style.id}>
                   <div className={stylesModule.styleIdentity}>
-                    <span className={stylesModule.styleSpecimen} aria-hidden="true"><i /><i /></span>
+                    <span className={stylesModule.styleSpecimen} aria-hidden="true" />
                     <div>
                       <h3><Link href={`/styles/${style.slug}`}>{style.name}</Link></h3>
                       <p>{style.summary}</p>
