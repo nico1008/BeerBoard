@@ -1,69 +1,22 @@
-"use client";
-
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
 import styles from "@/app/styles/styles.module.css";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
-
 type FeaturedFamily = {
+  image: string;
   name: string;
   sampleStyles: string[];
 };
 
 export function StyleDiscoveryIntro({ families }: { families: FeaturedFamily[] }) {
-  const scope = useRef<HTMLDivElement>(null);
-  const explorer = useRef<HTMLElement>(null);
-  const familyLead = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const media = gsap.matchMedia();
-
-    media.add("(min-width: 49rem)", () => {
-      gsap.fromTo(
-        `.${styles.heroImage}`,
-        { scale: 1 },
-        {
-          scale: 1.08,
-          opacity: 0.62,
-          ease: "none",
-          scrollTrigger: {
-            trigger: `.${styles.hero}`,
-            start: "top 4.25rem",
-            end: "bottom top+=4.25rem",
-            scrub: 0.7,
-          },
-        },
-      );
-
-      if (explorer.current && familyLead.current) {
-        ScrollTrigger.create({
-          trigger: explorer.current,
-          start: "top 6rem",
-          end: "bottom 14rem",
-          pin: familyLead.current,
-          pinSpacing: false,
-        });
-      }
-    });
-
-    return () => media.revert();
-  }, { scope });
-
   return (
-    <div ref={scope}>
+    <>
       <header className={styles.hero}>
         <Image
           className={styles.heroImage}
           src="/images/beer-style-spectrum.png"
-          alt="Five glasses show beer styles ranging from pale and hazy to fruity, amber, and dark."
+          alt=""
           fill
           priority
           sizes="100vw"
@@ -78,26 +31,25 @@ export function StyleDiscoveryIntro({ families }: { families: FeaturedFamily[] }
       </header>
 
       {families.length ? (
-        <section className={styles.familyExplorer} ref={explorer} aria-labelledby="family-explorer-title">
-          <div className={styles.familyLead} ref={familyLead}>
+        <section className={styles.familyExplorer} aria-labelledby="family-explorer-title">
+          <header className={styles.familyLead}>
             <h2 id="family-explorer-title">Choose a character.</h2>
-            <p>From bright and crisp to deep and roasty, each family opens a different path through the catalog.</p>
-          </div>
-          <nav className={styles.familyRail} aria-label="Featured style families">
-            {families.map((family) => (
+            <p>Five distinct routes into the catalog. Each opens the matching family below.</p>
+          </header>
+          <nav className={styles.familyMosaic} aria-label="Featured style families">
+            {families.map((family, index) => (
               <Link
-                className={styles.familyLink}
-                data-tone={familyTone(family.name)}
+                className={styles.familyTile}
+                data-layout={index}
                 href={`#family-${slugify(family.name)}`}
                 key={family.name}
               >
                 <Image
                   className={styles.familyImage}
-                  src="/images/beer-style-spectrum.png"
+                  src={family.image}
                   alt=""
                   fill
-                  sizes="(max-width: 48rem) 100vw, 22vw"
-                  style={{ objectPosition: familyFocus(family.name) }}
+                  sizes={index === 0 ? "(max-width: 48rem) 100vw, 40vw" : "(max-width: 48rem) 100vw, 30vw"}
                 />
                 <span className={styles.familyWash} aria-hidden="true" />
                 <span className={styles.familyContent}>
@@ -110,30 +62,8 @@ export function StyleDiscoveryIntro({ families }: { families: FeaturedFamily[] }
           </nav>
         </section>
       ) : null}
-    </div>
+    </>
   );
-}
-
-function familyTone(family: string) {
-  const value = family.toLocaleLowerCase();
-  if (value.includes("dark")) return "dark";
-  if (value.includes("wild") || value.includes("sour")) return "fruit";
-  if (value.includes("hop")) return "hop";
-  if (value.includes("wheat") || value.includes("farmhouse")) return "wheat";
-  if (value.includes("lager")) return "lager";
-  return "amber";
-}
-
-function familyFocus(family: string) {
-  const tone = familyTone(family);
-  return {
-    dark: "92% center",
-    fruit: "64% center",
-    hop: "79% center",
-    wheat: "50% center",
-    lager: "36% center",
-    amber: "78% center",
-  }[tone];
 }
 
 function slugify(value: string) {
