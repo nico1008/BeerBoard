@@ -29,7 +29,7 @@ export function AccountMenu() {
   }, []);
 
   if (account.status === "signed-out") {
-    return <Link className="icon-link" href="/login" aria-label="Log in"><LogIn size={19} /></Link>;
+    return <Link className="account-sign-in" href="/login"><LogIn aria-hidden="true" size={18} /><span>Sign in</span></Link>;
   }
 
   if (account.status === "loading") {

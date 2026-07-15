@@ -1,5 +1,11 @@
 # BeerBoard Architecture
 
+## Experience layer
+
+The public catalog uses an editorial discovery system rather than dashboard chrome. `BeerDiscovery` owns the discovery hero, style marquee, route cards, and the desktop-only GSAP scroll story. It checks `prefers-reduced-motion` before adding scroll behavior. Ranked results use `BeerRankingTable`, which renders a semantic ordered list shared by global, country, and style routes.
+
+Outfit is loaded through `next/font`. Lucide is the only interface icon library. Beer specimens derive their liquid tone from reported SRM ranges so the visual carries product meaning.
+
 ## System overview
 
 BeerBoard is a Next.js 16 App Router application hosted on Vercel. Supabase is the production database and authentication provider. PostgreSQL is the source of truth for catalog rows, assessment inputs, generated scores, rankings, release freshness, and user-owned Ledger entries.

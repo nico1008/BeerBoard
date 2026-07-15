@@ -1,4 +1,4 @@
-import { ArrowLeftRight } from "lucide-react";
+import { ArrowLeftRight, RotateCcw } from "lucide-react";
 import Link from "next/link";
 
 type BeerOption = { id: number; name: string; slug: string; brewery_name: string; country_name: string; style_name: string };
@@ -8,24 +8,21 @@ export function ComparisonSelectors({ options, left, right }: { options: BeerOpt
   return (
     <form className="compare-selectors" action="/compare" method="get">
       <div className="field">
-        <label htmlFor="subject-a">Subject A</label>
-        <input className="input" id="subject-a" name="a" list="beer-options-a" defaultValue={left} required placeholder="Search by beer name" autoComplete="off" />
-        <datalist id="beer-options-a">
-          {options.map((beer) => <option key={beer.id} value={beer.slug}>{beer.name} · {beer.brewery_name}</option>)}
-        </datalist>
+        <label htmlFor="subject-a">First beer</label>
+        <select className="select" id="subject-a" name="a" defaultValue={left} required>
+          <option value="" disabled>Choose a beer</option>
+          {options.map((beer) => <option key={beer.id} value={beer.slug}>{beer.name} — {beer.brewery_name} · {beer.country_name}</option>)}
+        </select>
       </div>
-      <Link className="button-ghost" href={swapHref} aria-label="Swap subjects"><ArrowLeftRight size={17} />Swap</Link>
+      <Link className="swap-button" href={swapHref} aria-label="Swap selected beers"><ArrowLeftRight aria-hidden="true" size={18} /><span>Swap</span></Link>
       <div className="field">
-        <label htmlFor="subject-b">Subject B</label>
-        <input className="input" id="subject-b" name="b" list="beer-options-b" defaultValue={right} required placeholder="Search by beer name" autoComplete="off" />
-        <datalist id="beer-options-b">
-          {options.map((beer) => <option key={beer.id} value={beer.slug}>{beer.name} · {beer.brewery_name}</option>)}
-        </datalist>
+        <label htmlFor="subject-b">Second beer</label>
+        <select className="select" id="subject-b" name="b" defaultValue={right} required>
+          <option value="" disabled>Choose another beer</option>
+          {options.map((beer) => <option key={beer.id} value={beer.slug}>{beer.name} — {beer.brewery_name} · {beer.country_name}</option>)}
+        </select>
       </div>
-      <div className="filter-actions">
-        <Link className="button-ghost" href="/compare">Clear</Link>
-        <button className="button-secondary" type="submit">Compare selections</button>
-      </div>
+      <div className="filter-actions"><Link className="button-ghost" href="/compare"><RotateCcw aria-hidden="true" size={17} />Clear</Link><button className="button-secondary" type="submit">Compare beers</button></div>
     </form>
   );
 }

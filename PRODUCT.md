@@ -6,31 +6,44 @@ product
 
 ## Users
 
-Beer lovers around the world. They range from curious newcomers to experienced enthusiasts who want to discover, compare, and remember notable beers without needing specialist training.
+Beer lovers around the world. They range from curious newcomers to experienced enthusiasts. They want to discover, understand, compare, and remember good beer without needing specialist training.
 
-## Product Purpose
+## Product purpose
 
-BeerBoard is a global beer-intelligence catalog. It helps people find highly rated demonstration beers, understand how styles and regions differ, compare technical and sensory profiles, and keep a personal Ledger. Success means a visitor can move from broad discovery to a confident comparison or saved beer in a few clear steps.
+BeerBoard is a welcoming global beer guide. It helps a visitor start with a feeling, place, style, or known beer and move toward a useful profile, comparison, or saved choice. The product explains technical evidence without turning discovery into a spreadsheet exercise.
 
-## Brand Personality
+Success means someone can find an interesting beer, understand why it may suit them, and choose a meaningful next step in a few clear interactions.
 
-Informed, welcoming, worldly. The voice is precise without becoming clinical. It explains unfamiliar measurements in plain language and treats global beer culture with curiosity and respect.
+## Brand personality
+
+Curious, welcoming, worldly.
+
+BeerBoard is informed without being snobbish. It is confident without presenting taste as objective truth. It explains unfamiliar measurements in plain language and treats every brewing culture with respect.
+
+## Core journeys
+
+- Discover a beer from the ranked list, search, country, or style directory.
+- Understand a beer through plain-language context, technical measurements, and sensory character.
+- Compare two named beers through differences and tradeoffs, not a declared winner.
+- Save a beer to a private ledger and return to it later.
+- Learn how rankings and demonstration data are produced.
 
 ## Anti-references
 
-- Faux-scientific interfaces that use tiny labels, unexplained jargon, or manufactured certainty.
-- Brewery-poster nostalgia, distressed textures, and ornamental “heritage” styling.
-- Generic AI dashboards built from repeated floating cards, gradients, oversized metrics, and decorative motion.
+- Admin dashboards, analyst terminals, and spreadsheet-like catalog pages.
+- Faux-scientific labels, unexplained jargon, and manufactured certainty.
+- Brewery-poster nostalgia, distressed textures, and ornamental heritage styling.
+- Generic AI layouts built from repeated floating cards, gradients, oversized metrics, and decorative badges.
 - Rankings that present fictional demonstration data as verified fact.
 
-## Design Principles
+## Design principles
 
-- Lead with the decision. Make discovery, comparison, and saving immediately understandable.
-- Explain the evidence. Scores and conclusions always show their inputs, limits, and data status.
-- Make density navigable. Use clear hierarchy and progressive disclosure instead of removing useful detail.
-- Respect global context. Country and style information should invite exploration without stereotypes.
-- Keep actions honest. Every visible control must work and every unavailable value must be named plainly.
+- Lead with beer and context. Put maker, place, style, and sensory character before raw data.
+- Keep the useful evidence. Reveal measurements where they answer a real question.
+- Make exploration inviting. Every country, style, ranking, and comparison should offer a clear next path.
+- Treat taste as personal. Scores organize the catalog; they do not determine what everyone should enjoy.
+- Keep actions honest. Every visible control works, and unavailable values are named plainly.
 
-## Accessibility & Inclusion
+## Accessibility and inclusion
 
-Target WCAG 2.2 AA across public and authenticated surfaces. All controls must work with keyboard and touch, focus must remain visible, and state cannot rely on color alone. Visualizations require text alternatives. Motion must respect reduced-motion preferences. Copy should remain useful for readers who do not know brewing terminology.
+Target WCAG 2.2 AA across public and authenticated surfaces. All controls work with keyboard and touch. Focus remains visible. State never relies on color alone. Visualizations include exact text alternatives. Motion respects reduced-motion preferences. Copy remains useful for readers who do not know brewing terminology.

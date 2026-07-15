@@ -5,7 +5,6 @@ import { useState } from "react";
 
 export function ExportButton({ href, label = "Export CSV" }: { href: string; label?: string }) {
   const [status, setStatus] = useState("");
-
   async function download() {
     setStatus("Preparing export…");
     try {
@@ -21,21 +20,9 @@ export function ExportButton({ href, label = "Export CSV" }: { href: string; lab
       anchor.remove();
       URL.revokeObjectURL(url);
       setStatus("Export downloaded.");
-    } catch {
-      setStatus("Export failed. Please try again.");
-    }
+    } catch { setStatus("Export failed. Please try again."); }
   }
-
-  return (
-    <>
-      <button className="button-ghost" type="button" onClick={download}><Download size={17} />{label}</button>
-      <span className="sr-only" aria-live="polite">{status}</span>
-    </>
-  );
+  return <><button className="button-ghost" type="button" onClick={download}><Download aria-hidden="true" size={17} />{label}</button><span className="sr-only" aria-live="polite">{status}</span></>;
 }
 
-function filenameFromHeader(header: string | null) {
-  if (!header) return null;
-  const match = /filename="([^"]+)"/.exec(header);
-  return match?.[1] ?? null;
-}
+function filenameFromHeader(header: string | null) { if (!header) return null; return /filename="([^"]+)"/.exec(header)?.[1] ?? null; }

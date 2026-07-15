@@ -1,6 +1,6 @@
 # BeerBoard
 
-BeerBoard is a global demonstration beer-intelligence catalog for beer lovers around the world. It combines an exactly 50-entry ranking, beer details, comparisons, country and style discovery, Supabase authentication, and a private user Ledger.
+BeerBoard is a welcoming global beer guide for beer lovers around the world. It combines an exactly 50-entry demonstration ranking, approachable beer profiles, comparisons, country and style discovery, Supabase authentication, and a private user ledger.
 
 The initial catalog is fictional demonstration data. The interface discloses that status and does not present the entries as verified claims about real breweries or beers.
 
@@ -8,6 +8,7 @@ The initial catalog is fictional demonstration data. The interface discloses tha
 
 - Next.js 16 App Router and React 19
 - TypeScript and Tailwind CSS 4
+- Outfit typography, Lucide icons, and GSAP motion on the discovery experience
 - Supabase Postgres, Auth, RLS, `@supabase/supabase-js`, and `@supabase/ssr`
 - Zod validation
 - Vitest

@@ -1,13 +1,10 @@
-export function BeerSpecimen({ name, style, country }: { name: string; style: string; country: string }) {
-  const mark = name.split(/\s+/).map((word) => word[0]).join("").slice(0, 3);
+export function BeerSpecimen({ name, style, country, colorSrm = null }: { name: string; style: string; country: string; colorSrm?: number | null }) {
+  const tone = colorSrm === null ? 4 : colorSrm < 5 ? 1 : colorSrm < 10 ? 2 : colorSrm < 18 ? 3 : colorSrm < 28 ? 4 : colorSrm < 38 ? 5 : 6;
+
   return (
     <figure className="specimen">
-      <div className="specimen-mark">
-        <strong aria-hidden="true">{mark}</strong>
-        <span>{name}</span>
-        <span>{style} · {country}</span>
-      </div>
-      <figcaption className="sr-only">Typographic specimen treatment for the fictional demonstration beer {name}.</figcaption>
+      <div className="specimen-glass" data-tone={tone} aria-hidden="true"><span className="specimen-foam" /><span className="specimen-beer"><i /><i /><i /></span></div>
+      <figcaption><strong>{name}</strong><span>{style} · {country}</span></figcaption>
     </figure>
   );
 }
