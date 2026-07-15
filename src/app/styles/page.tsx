@@ -10,11 +10,11 @@ export const metadata: Metadata = { title: "Beer styles" };
 export const revalidate = 3600;
 
 const featuredFamilyArt = [
-  { name: "Dark ale", image: "/images/styles/dark-ale.webp" },
-  { name: "Lager", image: "/images/styles/lager.webp" },
-  { name: "Hop-forward ale", image: "/images/styles/hop-forward.webp" },
-  { name: "Wild and sour", image: "/images/styles/wild-sour.webp" },
-  { name: "Wheat beer", image: "/images/styles/wheat.webp" },
+  { name: "Dark ale", image: "/images/styles/dark-ale-wide.webp" },
+  { name: "Lager", image: "/images/styles/lager-wide.webp" },
+  { name: "Hop-forward ale", image: "/images/styles/hop-forward-wide.webp" },
+  { name: "Wild and sour", image: "/images/styles/wild-sour-wide.webp" },
+  { name: "Wheat beer", image: "/images/styles/wheat-wide.webp" },
 ] as const;
 
 export default async function StylesPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {

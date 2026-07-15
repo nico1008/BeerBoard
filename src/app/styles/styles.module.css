@@ -129,7 +129,7 @@
 .familyTile[data-layout="4"] { background: oklch(0.72 0.08 235); }
 
 .familyImage {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   transform: scale(1);
   transition: transform 700ms var(--ease), filter 220ms var(--ease);
